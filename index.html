@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lectura y opinión — Leer, aprender, compartir y opinar</title>
+<meta name="description" content="No soy experto ni mucho menos, simplemente comparto mi opinión para quien le interese.">
+<meta property="og:title"       content="Lectura y opinión">
+<meta property="og:description" content="Leer, aprender, compartir y opinar. Negocios, productividad, autobiografías.">
+<meta property="og:type"        content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* ── HERO FOTO GRANDE ── */
+.hero {
+  position: relative;
+  min-height: 93vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: var(--marron);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(22,13,6,.90)  0%,
+    rgba(22,13,6,.50)  42%,
+    rgba(22,13,6,.08) 100%
+  );
+}
+.hero-bg-fallback {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--marron) 0%, #5E3D2A 60%, var(--acento-oscuro) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 60px 24px 80px;
+  max-width: var(--ancho-max);
+  margin: 0 auto; width: 100%;
+}
+.hero-kicker {
+  font-size: 12px; letter-spacing: .35em; text-transform: uppercase;
+  color: var(--acento); font-weight: 600; margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--serif); font-weight: 300;
+  font-size: clamp(50px, 8.5vw, 100px);
+  line-height: .96; letter-spacing: -.03em;
+  margin-bottom: 24px; color: var(--marfil);
+  max-width: 820px;
+}
+.hero h1 em { font-style: italic; color: var(--acento); font-weight: 300; }
+.hero-subtitle {
+  font-family: var(--serif); font-weight: 300; font-style: italic;
+  font-size: clamp(17px, 2.2vw, 22px);
+  color: rgba(247,242,234,.72);
+  margin-bottom: 42px; max-width: 500px; line-height: 1.45;
+}
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.hero .btn-primary { background: var(--marfil); color: var(--marron); }
+.hero .btn-primary:hover { background: var(--acento); color: var(--marfil); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(122,155,176,.35); }
+.hero .btn-ghost   { border-color: rgba(247,242,234,.4); color: var(--marfil); }
+.hero .btn-ghost:hover { background: rgba(247,242,234,.12); border-color: var(--marfil); color: var(--marfil); }
+
+@media (max-width: 768px) {
+  .hero { min-height: 82vh; }
+  .hero-content { padding: 40px 20px 60px; }
+}
+
+/* ── QUÉ ENCONTRÁS ── */
+.encuentras-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 30px;
+}
+
+/* ── QUIEN SOY ── */
+.quien-soy {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px; align-items: start;
+}
+.quien-soy-text p { font-size: 18px; line-height: 1.75; margin-bottom: 20px; }
+.quien-soy-text p:first-of-type {
+  font-family: var(--serif); font-size: 22px;
+  font-weight: 400; font-style: italic; color: var(--marron-suave);
+}
+
+/* ── RECOMENDACIONES ── */
+.recos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px; margin-top: 30px;
+}
+.reco-item { text-decoration: none; color: var(--marron); transition: transform .25s; }
+.reco-item:hover { transform: translateY(-3px); }
+.reco-cover {
+  aspect-ratio: 2/3; background: var(--piedra);
+  border-radius: var(--radio); overflow: hidden;
+  margin-bottom: 14px; position: relative;
+  box-shadow: var(--sombra-suave);
+}
+.reco-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.reco-cover-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--piedra) 0%, var(--acento) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-style: italic;
+  color: var(--marfil); padding: 20px;
+  text-align: center; font-size: 15px;
+}
+.reco-title  { font-family: var(--serif); font-size: 17px; font-weight: 500; line-height: 1.2; margin-bottom: 3px; }
+.reco-author { font-size: 13px; color: var(--marron-suave); }
+
+@media (max-width: 900px) {
+  .encuentras-grid { grid-template-columns: 1fr; }
+  .recos-grid      { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 560px) {
+  .recos-grid { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="index.html" class="logo">Lectura <em>y opinión</em></a>
+    <button class="nav-toggle" aria-label="Menú">☰</button>
+    <div class="nav-links">
+      <a href="#quien-soy">Sobre mí</a>
+      <a href="biblioteca.html">Biblioteca</a>
+      <a href="https://gastonsilvetti.substack.com" target="_blank" rel="noopener">Newsletter</a>
+      <a href="https://instagram.com/gastonsilvetti" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg-fallback"></div>
+  <img src="img/foto-perfil.jpg" alt="Gastón Silvetti" class="hero-bg" onerror="this.style.display='none'">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-kicker">Un proyecto personal</div>
+    <h1>Leer, aprender,<br>compartir y <em>opinar</em>.</h1>
+    <p class="hero-subtitle">No soy experto ni mucho menos, simplemente comparto mi opinión para quien le interese.</p>
+    <div class="hero-cta">
+      <a href="biblioteca.html" class="btn btn-primary">Ver la biblioteca</a>
+      <a href="https://gastonsilvetti.substack.com" target="_blank" rel="noopener" class="btn btn-substack">
+        ✉ Suscribite al newsletter
+      </a>
+      <a href="#quien-soy" class="btn btn-ghost">Conocer el proyecto</a>
+    </div>
+  </div>
+</header>
+
+<!-- QUÉ ENCONTRÁS -->
+<section class="alt">
+  <div class="container">
+    <div class="section-kicker">Qué encontrás acá</div>
+    <h2 class="section-title">Tres formas de <em>estar cerca</em> de los libros.</h2>
+    <p class="section-intro">Contenido 100% genuino que surge del entendimiento a partir de los libros con los que me voy cruzando.</p>
+
+    <div class="encuentras-grid">
+      <a href="biblioteca.html" class="card">
+        <div class="card-icon">📚</div>
+        <h3>Biblioteca</h3>
+        <p>Todos los libros que leí y los que quiero leer. Con mi opinión, a quién se lo recomendaría, y un link directo para comprarlo.</p>
+        <span class="card-arrow">Explorar biblioteca →</span>
+      </a>
+
+      <a href="https://gastonsilvetti.substack.com" target="_blank" rel="noopener" class="card">
+        <div class="card-icon">✉</div>
+        <span class="card-tag nuevo">Activo</span>
+        <h3>Newsletter</h3>
+        <p>Todos los domingos, la idea que me rompió la cabeza esta semana. Cita, opinión, mensaje, reflexión. Corto y personal.</p>
+        <span class="card-arrow">Leer en Substack →</span>
+      </a>
+
+      <a href="https://instagram.com/gastonsilvetti" target="_blank" rel="noopener" class="card">
+        <div class="card-icon">@</div>
+        <h3>Instagram</h3>
+        <p>Reseñas, subrayados, lo que estoy leyendo hoy. Y preguntas para charlar con quien quiera sumarse a la conversación.</p>
+        <span class="card-arrow">@gastonsilvetti →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉN SOY -->
+<section id="quien-soy">
+  <div class="container">
+    <div class="quien-soy">
+      <div>
+        <div class="section-kicker">Sobre mí</div>
+        <h2 class="section-title">Hola, soy <em>Gastón</em>.</h2>
+      </div>
+      <div class="quien-soy-text">
+        <p>Leo alrededor de cuatro libros por mes, casi todos sobre negocios, productividad, marketing, ventas y autobiografías.</p>
+        <p>No soy crítico literario ni mucho menos, mi idea no es enseñar nada. Simplemente soy alguien que lee mucho y me gusta la idea de compartirlo, para así de paso crear un lugar en donde consultar cada lectura que fui atravesando.</p>
+        <p>Este proyecto nace de la idea de contagiar de alguna manera el mundo de la lectura, y de encontrar gente que encuentre interesante lo que muchos autores promulgan.</p>
+        <p>En un mundo que cambia tan rápido, resulta importante mantenerse siempre informado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÚLTIMAS RECOMENDACIONES -->
+<section class="alt">
+  <div class="container">
+    <div class="section-kicker">Últimas recomendaciones</div>
+    <h2 class="section-title">Libros que vale <em>la pena</em> leer.</h2>
+    <p class="section-intro">Una selección de lo que leí últimamente. Para ver todo, pasate por la biblioteca completa.</p>
+
+    <div class="recos-grid" id="recos-destacadas">
+      <!-- Poblado desde Supabase via JS -->
+    </div>
+
+    <div class="center-action">
+      <a href="biblioteca.html" class="btn btn-primary">Ver biblioteca completa</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>
+      <h4>Lectura <em>y opinión</em></h4>
+      <p>Un proyecto personal para compartir lecturas y construir comunidad alrededor de los libros.</p>
+    </div>
+    <div>
+      <h5>Navegar</h5>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="biblioteca.html">Biblioteca</a></li>
+        <li><a href="https://gastonsilvetti.substack.com" target="_blank" rel="noopener">Newsletter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Conectar</h5>
+      <ul>
+        <li><a href="https://instagram.com/gastonsilvetti" target="_blank" rel="noopener">@gastonsilvetti</a></li>
+        <li><a href="mailto:gastonsilvetti00@gmail.com">Escribime</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    © 2026 · Lectura y opinión · Hecho con muchos libros abiertos al mismo tiempo
+  </div>
+</footer>
+
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Nav toggle
+  document.querySelector('.nav-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('open');
+  });
+
+  // Cargar libros destacados desde Supabase
+  const { createClient } = supabase;
+  const db = createClient(
+    'https://dnffifdouniqirlljrse.supabase.co',
+    'sb_publishable_TL7Ypxd2AoVxT9R6lUZSbQ_PInx0wpI'
+  );
+
+  async function cargarDestacados() {
+    const contenedor = document.getElementById('recos-destacadas');
+    const { data, error } = await db
+      .from('libros')
+      .select('titulo, autor, tapa_url, slug')
+      .eq('destacado', true)
+      .eq('leido', true)
+      .order('created_at', { ascending: false })
+      .limit(4);
+
+    if (error || !data || data.length === 0) {
+      contenedor.innerHTML = `<p style="color:var(--marron-suave);font-style:italic;grid-column:1/-1">Pronto van a aparecer las primeras recomendaciones.</p>`;
+      return;
+    }
+
+    contenedor.innerHTML = data.map(libro => `
+      <a href="biblioteca.html" class="reco-item">
+        <div class="reco-cover">
+          ${libro.tapa_url
+            ? `<img src="${libro.tapa_url}" alt="${esc(libro.titulo)}" loading="lazy">`
+            : `<div class="reco-cover-placeholder">${esc(libro.titulo)}</div>`
+          }
+        </div>
+        <div class="reco-title">${esc(libro.titulo)}</div>
+        <div class="reco-author">${esc(libro.autor)}</div>
+      </a>
+    `).join('');
+  }
+
+  function esc(s) {
+    return String(s||'')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  cargarDestacados();
+</script>
+</body>
+</html>
